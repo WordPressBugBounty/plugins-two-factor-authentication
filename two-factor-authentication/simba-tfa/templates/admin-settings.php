@@ -2,7 +2,7 @@
 
 if (!defined('ABSPATH')) die('Access denied.');
 
-?><div class="wrap">
+?><div id="simba-tfa-admin-wrapper" class="wrap">
 
 	<div>
 		<h1><?php echo esc_html(empty($settings_page_heading) ? __('Two Factor Authentication - Admin Settings', 'two-factor-authentication') : $settings_page_heading); ?></h1>

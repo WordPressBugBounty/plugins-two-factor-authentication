@@ -1,8 +1,8 @@
 === Two Factor Authentication ===
 Tags: two factor, 2fa, tfa, two factor auth, google authenticator
 Requires at least: 3.4
-Tested up to: 6.6
-Stable tag: 1.14.23
+Tested up to: 6.7
+Stable tag: 1.14.24
 Requires PHP: 5.6
 Author: DavidAnderson
 Contributors: DavidAnderson, DNutbourne
@@ -162,6 +162,11 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 
 == Changelog ==
 
+= 1.14.24 - 24/Oct/2024 =
+
+* TWEAK: Redirection when TFA is compulsory (Premium feature) should exclude the logout link
+* FIX: An issue that prevented turning on TFA when the redirect user URL is set
+
 = 1.14.23 - 25/Jun/2024 =
 
 * TWEAK: Do not require TFA codes for API requests authenticated via an application password
@@ -169,7 +174,7 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 
 = 1.14.22 - 28/Nov/2023 =
 
-* FIX: Fix a fatal error that occured due to a failure to process a WP_Error object on an Affiliates WP login form
+* FIX: Fix a fatal error that occurred due to a failure to process a WP_Error object on an Affiliates WP login form
 * TWEAK: Further improve styling when used on Ultimate Member login forms
 * TWEAK: Force unsetting of disabled property before triggering click event
 
@@ -332,7 +337,7 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 
 = 1.11.0 - 14/Sep/2021 =
 
-* FEATURE: (Premium) Add new anti-bot feature for WooCommerce login forms: do not include the login form within the page HTML (making them invisible to most bots), bringing it back via JavaScript. The feature needs to be activated witin the plugin settings.
+* FEATURE: (Premium) Add new anti-bot feature for WooCommerce login forms: do not include the login form within the page HTML (making them invisible to most bots), bringing it back via JavaScript. The feature needs to be activated within the plugin settings.
 
 = 1.10.4 - 27/Jul/2021 =
 
@@ -372,7 +377,7 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 
 = 1.9.2 - 20/Mar/2021 =
 
-* TWEAK: When checking if a user has TFA enabled on a login page, perform the same sanitisation on the username as WP core, so that if the user mis-types their username (which WP accepts) e.g. by prefixing a space, then they will still be asked for their TFA code (instead of jumping straight to an error for not supplying one)
+* TWEAK: When checking if a user has TFA enabled on a login page, perform the same sanitisation on the username as WP core, so that if the user mistypes their username (which WP accepts) e.g. by prefixing a space, then they will still be asked for their TFA code (instead of jumping straight to an error for not supplying one)
 * TRANSLATIONS: Added an Italian translation, thanks to Edoardo Di Leginio
 
 = 1.9.1 - 15/Feb/2021 =
@@ -488,7 +493,7 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 
 = 1.5.3 - 22/Jun/2019 =
 
-* TWEAK: When using your final emergency code (Premium version), and viewing your settings (which regenerated new ones), then if you did not follow the advice to reset your prviate key, you would get the same codes as before. This might be thought undesirable (though is not a security flaw, as the emergency codes are no more guessable the second time around than the first). This behaviour has now been changed.
+* TWEAK: When using your final emergency code (Premium version), and viewing your settings (which regenerated new ones), then if you did not follow the advice to reset your private key, you would get the same codes as before. This might be thought undesirable (though is not a security flaw, as the emergency codes are no more guessable the second time around than the first). This behaviour has now been changed.
 
 = 1.5.2 - 08/Jun/2019 =
 
@@ -560,7 +565,7 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 
 = 1.3.13 - 18/Dec/2018 =
 
-* SECURITY: Fix a logged-in CSRF vulnerability reported by Martijn Korse (www.bitnesswise.com). Due to a missing nonce check, if an attacker was able to persuade a personally-targetted victim who was currently logged in to their WordPress account to visit a personally-crafted (for the individual victim) page in the same browser session, then the attacker would be able to de-activate two-factor authentication for the victim on that WordPress site (thus leaving the targetted account protected by the user's password, but not by a second factor - the absence of a request for a TFA code would be apparent on the user's next login). This vulnerability was inherited from the original "Two Factor Auth" plugin that this plugin was forked from, and so is present in all versions before this one.
+* SECURITY: Fix a logged-in CSRF vulnerability reported by Martijn Korse (www.bitnesswise.com). Due to a missing nonce check, if an attacker was able to persuade a personally-targeted victim who was currently logged in to their WordPress account to visit a personally-crafted (for the individual victim) page in the same browser session, then the attacker would be able to de-activate two-factor authentication for the victim on that WordPress site (thus leaving the targeted account protected by the user's password, but not by a second factor - the absence of a request for a TFA code would be apparent on the user's next login). This vulnerability was inherited from the original "Two Factor Auth" plugin that this plugin was forked from, and so is present in all versions before this one.
 * TWEAK: Some minor code-tidying
 * TWEAK: Update bundled Premium updater library to current version (1.5.10)
 
@@ -587,7 +592,7 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 
 = 1.3.7 - 15/Oct/2018 =
 
-* TWEAK: Try to mitigate plugins on the login page which cause JavaScript exceptions by enqueing our scripts earlier.
+* TWEAK: Try to mitigate plugins on the login page which cause JavaScript exceptions by enqueuing our scripts earlier.
 
 = 1.3.6 - 04/Oct/2018 =
 
@@ -816,7 +821,7 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 * TESTING: Tested with "Theme My Login" - http://wordpress.org/plugins/theme-my-login/ - no issues
 * TWEAK: Do a little bit of status logging to the browser's developer console on login forms, to help debugging any issues
 * TWEAK: Add a spinner on login forms whilst TFA status is being checked (WP 3.8+)
-* TWEAK: Make sure that scripts are versionned, to prevent updates not being immediately effective
+* TWEAK: Make sure that scripts are versioned, to prevent updates not being immediately effective
 * TWEAK: Make sure OTP field on WooCommerce login form receives focus automatically
 
 = 1.1.8 - 14/Apr/2015 =
@@ -870,4 +875,4 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 * User interface simplified/de-cluttered
 
 == Upgrade Notice ==
-* 1.14.22 : Improve support for Ultimate Member and Affiliate WP login forms (Premium version). A recommended update for all.
+* 1.14.24 : A couple of minor improvements to user redirection. A recommended update for all.

@@ -8,7 +8,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: Team Updraft <mail@example.com>\n"
 "Last-Translator: John Doe <mail@example.com>\n"
-"POT-Creation-Date: 2024-06-25 16:53+0000\n"
+"POT-Creation-Date: 2024-10-24 17:43+0000\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/plugins/two-factor-authentication/\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
@@ -181,7 +181,7 @@ msgstr ""
 msgid "Disable two-factor authentication"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1389, dist/simba-tfa/premium/required-for-user.php:108
+#: dist/simba-tfa/simba-tfa.php:1389, dist/simba-tfa/premium/required-for-user.php:112
 msgid "Multisite Super Admin"
 msgstr ""
 
@@ -363,43 +363,63 @@ msgstr ""
 msgid "Your emergency codes are:"
 msgstr ""
 
-#: dist/simba-tfa/premium/required-for-user.php:90
+#: dist/simba-tfa/premium/required-for-user.php:94
 msgid "(TFA is configured to not be available for this role)"
 msgstr ""
 
-#: dist/simba-tfa/premium/required-for-user.php:102
+#: dist/simba-tfa/premium/required-for-user.php:106
 msgid "Choose which user roles are required to have two-factor authentication active (remember to also make it available for any chosen roles)."
 msgstr ""
 
-#: dist/simba-tfa/premium/required-for-user.php:129
-msgid "For these users, hide the option to turn TFA off"
-msgstr ""
-
 #: dist/simba-tfa/premium/required-for-user.php:133
-msgid "If a user with TFA required but not yet setup logs in, then forcibly redirect them from any other page to the following URL (which should be a preferred page where they can set it up - make sure that it is a full URL beginning with http:// or https:// and that it is the WordPress canonical URL for the page so that a redirection loop is not created; a page in the WordPress dashboard (i.e. wp-admin) can be used if your users are allowed to access the dashboard):"
+msgid "Prevent these users from turning off TFA"
 msgstr ""
 
-#: dist/simba-tfa/premium/required-for-user.php:141
-msgid "N.B. Note that the following settings forbid login entirely; if you are using the above setting for redirecting users upon login to a user-settings page where they can set up TFA, then you likely do not want to forbid them from logging in."
+#: dist/simba-tfa/premium/required-for-user.php:137
+msgid "If a user logs in and is required to set up TFA, you can redirect them to the URL below."
 msgstr ""
 
-#: dist/simba-tfa/premium/required-for-user.php:143
-msgid "Forbid users who have not set up TFA to login once their accounts are %s days old"
+#: dist/simba-tfa/premium/required-for-user.php:137
+msgid "Please make sure the URL starts with http:// or https:// and is the correct WordPress URL to prevent redirect loops."
+msgstr ""
+
+#: dist/simba-tfa/premium/required-for-user.php:137
+msgid "This URL should be a page where they can set up TFA."
+msgstr ""
+
+#: dist/simba-tfa/premium/required-for-user.php:137
+msgid "You can use a page within the WordPress dashboard if your users have access to it."
+msgstr ""
+
+#: dist/simba-tfa/premium/required-for-user.php:145
+msgid "Forbid logins for users without TFA"
 msgstr ""
 
 #: dist/simba-tfa/premium/required-for-user.php:147
+msgid "Important note: if you redirect users to set up TFA upon login, you will not want to forbid them from logging in."
+msgstr ""
+
+#: dist/simba-tfa/premium/required-for-user.php:147
+msgid "If you have existing users, consider informing them about these changes."
+msgstr ""
+
+#: dist/simba-tfa/premium/required-for-user.php:149
+msgid "Forbid users who haven't set up TFA from logging in after their account is %s days old"
+msgstr ""
+
+#: dist/simba-tfa/premium/required-for-user.php:153
 msgid "Do not begin forbidding such users to login until: %s"
 msgstr ""
 
-#: dist/simba-tfa/premium/required-for-user.php:147
+#: dist/simba-tfa/premium/required-for-user.php:153
 msgid "(If you are setting up for the first time and have pre-existing users, then you may also want to inform them)."
 msgstr ""
 
-#: dist/simba-tfa/premium/required-for-user.php:163
+#: dist/simba-tfa/premium/required-for-user.php:169
 msgid "Please set up two-factor authentication"
 msgstr ""
 
-#: dist/simba-tfa/premium/required-for-user.php:163
+#: dist/simba-tfa/premium/required-for-user.php:169
 msgid "You will need to set up and use two-factor authentication to login in future.</a>"
 msgstr ""
 

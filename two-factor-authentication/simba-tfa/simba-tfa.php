@@ -1105,10 +1105,10 @@ class Simba_Two_Factor_Authentication_1 {
 	/**
 	 * Save incorrect TFA code attempts in database
 	 *
-	 * @param Array   $tfa_incorrect_code_attempts    - all user info with incorrent code attempts 
-	 * @param Boolean $udpate                         - update in option table
+	 * @param Array   $tfa_incorrect_code_attempts    - all user info with incorrect code attempts 
+	 * @param Boolean $update                         - update in option table
 	 *
-	 * @retrun Void
+	 * @return Void
 	 */
 	private function save_incorrect_tfa_code_attempts($tfa_incorrect_code_attempts, $update = false) {
 		if ($update) {
@@ -1123,7 +1123,7 @@ class Simba_Two_Factor_Authentication_1 {
 	 *
 	 * @param Array $user_info    - user invalid attempts
 	 *
-	 * @retrun Array
+	 * @return Array
 	 */
 	private function remove_incorrect_tfa_code_old_attempts($user_info) {
 		$splice_recs = 0;
@@ -1140,9 +1140,9 @@ class Simba_Two_Factor_Authentication_1 {
 	/**
 	 * Log incorrect TFA code attempt and email user if attempt exceeded limit
 	 *
-	 * @param WP_User $user - user object for teh user logging in
+	 * @param WP_User $user - user object for the user logging in
 	 *
-	 * @retrun Void
+	 * @return Void
 	 */
 	private function log_incorrect_tfa_code_attempt($user) {
 		$tfa_incorrect_code_attempts = get_site_option('tfa_incorrect_code_attempts');
@@ -1175,7 +1175,7 @@ class Simba_Two_Factor_Authentication_1 {
 	/**
 	 * Get incorrect attempt info time and IP address to save in database
 	 * 
-	 * @retrun Array
+	 * @return Array
 	 */
 	private function get_incorrect_tfa_attempt_info() {
 		$ip_address = apply_filters('tfa_user_ip_address', $_SERVER['REMOTE_ADDR']);
@@ -1187,7 +1187,7 @@ class Simba_Two_Factor_Authentication_1 {
 	 *
 	 * @param WP_User $user    - logging in user object
 	 *
-	 * @retrun Array
+	 * @return Array
 	 */
 	private function get_incorrect_tfa_user_info($user) {
 		return array('username' => $user->user_login, 'attempts' => array($this->get_incorrect_tfa_attempt_info()));
@@ -1196,7 +1196,7 @@ class Simba_Two_Factor_Authentication_1 {
 	/**
 	 * Notify user might be someone else has your possword  
 	 *
-	 * @param Array  $user_info	    - user's incorrect attempt informaion
+	 * @param Array  $user_info	    - user's incorrect attempt information
 	 * @param String $user_email    - user email address notification to be sent.
 	 */
 	private function notify_incorrect_tfa_code_attempts($user_info, $user_email) {
