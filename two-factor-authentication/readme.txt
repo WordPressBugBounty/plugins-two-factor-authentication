@@ -2,7 +2,7 @@
 Tags: two factor, 2fa, tfa, two factor auth, google authenticator
 Requires at least: 3.4
 Tested up to: 6.7
-Stable tag: 1.14.24
+Stable tag: 1.14.26
 Requires PHP: 5.6
 Author: DavidAnderson
 Contributors: DavidAnderson, DNutbourne
@@ -161,6 +161,14 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 13. Allowing users to have trusted devices (Premium version)
 
 == Changelog ==
+
+= 1.14.26 - 13/Nov/2024 =
+
+= TWEAK: Resolve a language deprecation notice on WP 6.7 and non-default language
+
+= 1.14.25 - 11/Nov/2024 =
+
+* FIX: Fix a regression in 1.14.24 Premium in the handling of empty query strings in redirect URLs when running on PHP <= 7.4 (if on such versions, please see https://www.php.net/eol.php ).
 
 = 1.14.24 - 24/Oct/2024 =
 
@@ -875,4 +883,4 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 * User interface simplified/de-cluttered
 
 == Upgrade Notice ==
-* 1.14.24 : A couple of minor improvements to user redirection. A recommended update for all.
+* 1.14.26 : Fix a language deprecation notice on WP 6.7. A recommended update for all.

@@ -5,7 +5,7 @@ Plugin URI: https://www.simbahosting.co.uk/s3/product/two-factor-authentication/
 Description: Secure your WordPress login forms with two factor authentication - including WooCommerce login forms
 Author: David Anderson, original plugin by Oskar Hane and enhanced by Dee Nutbourne
 Author URI: https://www.simbahosting.co.uk
-Version: 1.14.24
+Version: 1.14.26
 Text Domain: two-factor-authentication
 Domain Path: /languages
 License: GPLv2 or later
@@ -52,7 +52,7 @@ if (!class_exists('Simba_Two_Factor_Authentication_Plugin')):
  */
 class Simba_Two_Factor_Authentication_Plugin extends Simba_Two_Factor_Authentication_1 {
 	
-	public $version = '1.14.24';
+	public $version = '1.14.26';
 	
 	const PHP_REQUIRED = '5.6';
 	
@@ -64,6 +64,8 @@ class Simba_Two_Factor_Authentication_Plugin extends Simba_Two_Factor_Authentica
 	public function __construct() {
 		
 		add_action('plugins_loaded', array($this, 'plugins_loaded_load_textdomain'));
+		
+		add_action('init', array($this, 'init'));
 		
 		if (version_compare(PHP_VERSION, self::PHP_REQUIRED, '<' )) {
 			add_action('all_admin_notices', array($this, 'admin_notice_insufficient_php'));
@@ -258,9 +260,13 @@ class Simba_Two_Factor_Authentication_Plugin extends Simba_Two_Factor_Authentica
 			false,
 			dirname(plugin_basename(__FILE__)).'/languages/'
 		);
-		
+	}
+	
+	/**
+	 * Run upon the WP init action. This method is called even if main loading aborts - so don't put anything else in it (use a separate method).
+	 */
+	public function init() {
 		$this->set_settings_page_heading(sprintf(__('Two Factor Authentication (Version: %s) - Admin Settings', 'two-factor-authentication'), $this->version));
-		
 	}
 }
 endif;
