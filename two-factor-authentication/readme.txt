@@ -2,7 +2,7 @@
 Tags: two factor, 2fa, tfa, two factor auth, google authenticator
 Requires at least: 3.4
 Tested up to: 6.7
-Stable tag: 1.14.26
+Stable tag: 1.14.27
 Requires PHP: 5.6
 Author: DavidAnderson
 Contributors: DavidAnderson, DNutbourne
@@ -162,9 +162,14 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 
 == Changelog ==
 
+= 1.14.27 - 25/Nov/2024 =
+
+* FIX: 1.14.26 broke saving settings on a front-end page via the shortcode
+* TWEAK: Purge empty members of the tfa_incorrect_code_attempts list, to prevent unnecessary growth; and key by user ID, not user login
+
 = 1.14.26 - 13/Nov/2024 =
 
-= TWEAK: Resolve a language deprecation notice on WP 6.7 and non-default language
+* TWEAK: Resolve a language deprecation notice on WP 6.7 and non-default language
 
 = 1.14.25 - 11/Nov/2024 =
 
@@ -883,4 +888,4 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 * User interface simplified/de-cluttered
 
 == Upgrade Notice ==
-* 1.14.26 : Fix a language deprecation notice on WP 6.7. A recommended update for all.
+* 1.14.27 : Fix a regression in 1.14.26, and manage a database option more efficiently. A recommended update for all.

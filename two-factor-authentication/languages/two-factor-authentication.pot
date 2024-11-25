@@ -8,7 +8,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language-Team: Team Updraft <mail@example.com>\n"
 "Last-Translator: John Doe <mail@example.com>\n"
-"POT-Creation-Date: 2024-11-13 11:33+0000\n"
+"POT-Creation-Date: 2024-11-25 17:39+0000\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/plugins/two-factor-authentication/\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Plugin settings"
 msgstr ""
 
-#: dist/two-factor-login.php:155, dist/two-factor-login.php:171, dist/two-factor-login.php:172, dist/simba-tfa/simba-tfa.php:180, dist/simba-tfa/templates/user-settings.php:20
+#: dist/two-factor-login.php:155, dist/two-factor-login.php:171, dist/two-factor-login.php:172, dist/simba-tfa/simba-tfa.php:183, dist/simba-tfa/templates/user-settings.php:20
 msgid "Two Factor Authentication"
 msgstr ""
 
@@ -93,149 +93,149 @@ msgstr ""
 msgid "Two Factor Authentication (Version: %s) - Admin Settings"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:182
+#: dist/simba-tfa/simba-tfa.php:185
 msgid "Go here for your two factor authentication settings..."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:199
+#: dist/simba-tfa/simba-tfa.php:202
 msgid "Two Factor Authentication Settings"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:416
+#: dist/simba-tfa/simba-tfa.php:419
 msgid "2FA"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:441, dist/simba-tfa/simba-tfa.php:1308
+#: dist/simba-tfa/simba-tfa.php:444, dist/simba-tfa/simba-tfa.php:1317
 msgid "Disabled"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:438, dist/simba-tfa/simba-tfa.php:1298
+#: dist/simba-tfa/simba-tfa.php:441, dist/simba-tfa/simba-tfa.php:1307
 msgid "Enabled"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1061
+#: dist/simba-tfa/simba-tfa.php:1064
 msgid "The \"encrypt secrets\" feature is currently enabled, but no encryption key has been found (set via the SIMBA_TFA_DB_ENCRYPTION_KEY constant)."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1061
+#: dist/simba-tfa/simba-tfa.php:1064
 msgid "This indicates that either setup failed, or your WordPress installation has been corrupted."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1061
+#: dist/simba-tfa/simba-tfa.php:1064
 msgid "Go here for the FAQs, which explain how a website owner can de-activate the plugin without needing to login."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1062, dist/simba-tfa/simba-tfa.php:1461, dist/simba-tfa/simba-tfa.php:1498, dist/simba-tfa/simba-tfa.php:1512, dist/simba-tfa/simba-tfa.php:1655, dist/simba-tfa/includes/login-form-integrations.php:124
+#: dist/simba-tfa/simba-tfa.php:1065, dist/simba-tfa/simba-tfa.php:1470, dist/simba-tfa/simba-tfa.php:1507, dist/simba-tfa/simba-tfa.php:1521, dist/simba-tfa/simba-tfa.php:1664, dist/simba-tfa/includes/login-form-integrations.php:124
 msgid "Error:"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1062, dist/simba-tfa/includes/login-form-integrations.php:124
+#: dist/simba-tfa/simba-tfa.php:1065, dist/simba-tfa/includes/login-form-integrations.php:124
 msgid "The one-time password (TFA code) you entered was incorrect."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1203
+#: dist/simba-tfa/simba-tfa.php:1212
 msgid "Incorrect TFA code attempts"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1204
+#: dist/simba-tfa/simba-tfa.php:1213
 msgid "There has been an incorrect TFA code entered for logging in to your account %s."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1205
+#: dist/simba-tfa/simba-tfa.php:1214
 msgid "Attempts"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1207
+#: dist/simba-tfa/simba-tfa.php:1216
 msgid "from"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1209
+#: dist/simba-tfa/simba-tfa.php:1218
 msgid "If the above attempts were not by you then someone else has your password."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1210
+#: dist/simba-tfa/simba-tfa.php:1219
 msgid "TFA codes are checked only after the password has been successfully checked."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1211
+#: dist/simba-tfa/simba-tfa.php:1220
 msgid "Please change your password urgently."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1295
+#: dist/simba-tfa/simba-tfa.php:1304
 msgid "N.B. This site is configured to forbid you to log in if you disable two-factor authentication after your account is %d days old"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1298
+#: dist/simba-tfa/simba-tfa.php:1307
 msgid "Enable two-factor authentication"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1303
+#: dist/simba-tfa/simba-tfa.php:1312
 msgid "(you must enter the current code: %s)"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1301
+#: dist/simba-tfa/simba-tfa.php:1310
 msgid "(Current code: %s)"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1308
+#: dist/simba-tfa/simba-tfa.php:1317
 msgid "Disable two-factor authentication"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1389, dist/simba-tfa/premium/required-for-user.php:113
+#: dist/simba-tfa/simba-tfa.php:1398, dist/simba-tfa/premium/required-for-user.php:113
 msgid "Multisite Super Admin"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1414
+#: dist/simba-tfa/simba-tfa.php:1423
 msgid "Do not require 2FA over XMLRPC (best option if you must use XMLRPC and your client does not support 2FA)"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1415
+#: dist/simba-tfa/simba-tfa.php:1424
 msgid "Do require 2FA over XMLRPC (best option if you do not use XMLRPC or are unsure)"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1461
+#: dist/simba-tfa/simba-tfa.php:1470
 msgid "The indicated user could not be found."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1498
+#: dist/simba-tfa/simba-tfa.php:1507
 msgid "The site owner has forbidden you to login without two-factor authentication. Please contact the site owner to re-gain access."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1512
+#: dist/simba-tfa/simba-tfa.php:1521
 msgid "You are attempting to log in to an account that has two-factor authentication enabled; this requires you to also have two-factor authentication enabled on the account whose credentials you are using."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1586
+#: dist/simba-tfa/simba-tfa.php:1595
 msgid "Click to enter One Time Password"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1587
+#: dist/simba-tfa/simba-tfa.php:1596
 msgid "You have to enter a username first."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1588
+#: dist/simba-tfa/simba-tfa.php:1597
 msgid "One Time Password (i.e. 2FA)"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1589
+#: dist/simba-tfa/simba-tfa.php:1598
 msgid "(check your OTP app to get this password)"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1590
+#: dist/simba-tfa/simba-tfa.php:1599
 msgid "Trust this device (allow login without 2FA for %d day)"
 msgid_plural "Trust this device (allow login without TFA for %d days)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: dist/simba-tfa/simba-tfa.php:1591
+#: dist/simba-tfa/simba-tfa.php:1600
 msgid "(Trusted device - no OTP code required)"
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1595
+#: dist/simba-tfa/simba-tfa.php:1604
 msgid "An error has occurred. Site owners can check the JavaScript console for more details."
 msgstr ""
 
-#: dist/simba-tfa/simba-tfa.php:1655
+#: dist/simba-tfa/simba-tfa.php:1664
 msgid "Template path not found:"
 msgstr ""
 

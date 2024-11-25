@@ -2,6 +2,9 @@
 
 if (!defined('ABSPATH')) die('Access denied.');
 
+/**
+ * Public ethods which should always run should be considered for being marked 'final' to prevent accidental coding of child methods with the same method names. Consider doing this for any hooked to WP actions.
+ */
 class Simba_Two_Factor_Authentication_1 {
 
 	/**
@@ -130,7 +133,7 @@ class Simba_Two_Factor_Authentication_1 {
 		add_action('admin_menu', array($this, 'admin_menu'), 9);
 
 		add_action('admin_init', array($this, 'register_two_factor_auth_settings'));
-		add_action('init', array($this, 'init'));
+		add_action('init', array($this, 'init_parent'));
 
 		if (!defined('TWO_FACTOR_DISABLE') || !TWO_FACTOR_DISABLE) {
 			
@@ -175,7 +178,7 @@ class Simba_Two_Factor_Authentication_1 {
 	 *
 	 * @param WP_User $user - the user that the profile is for
 	 */
-	public function show_user_profile($user) {
+	final public function show_user_profile($user) {
 		if ($user->ID !== get_current_user_id() || !$this->is_activated_for_user($user->ID)) return;
 		echo '<h2>'.__('Two Factor Authentication', 'two-factor-authentication').'</h2>';
 		$settings_url = admin_url('admin.php').'?page='.$this->get_user_settings_page_slug();
@@ -238,7 +241,7 @@ class Simba_Two_Factor_Authentication_1 {
 	/**
 	 * Runs upon the WP filter admin_menu
 	 */
-	public function admin_menu() {
+	final public function admin_menu() {
 		$this->get_controller('totp')->potentially_port_private_keys();
 	}
 	
@@ -806,7 +809,7 @@ class Simba_Two_Factor_Authentication_1 {
 	 *
 	 * @return Boolean
 	 */
-	public function get_php_errors($errno, $errstr, $errfile, $errline) {
+	final public function get_php_errors($errno, $errstr, $errfile, $errline) {
 		if (0 == error_reporting()) return true;
 		$logline = $this->php_error_to_logline($errno, $errstr, $errfile, $errline);
 		$this->logged[] = $logline;
@@ -844,9 +847,9 @@ class Simba_Two_Factor_Authentication_1 {
 	}
 
 	/**
-	 * Runs upon the WordPress 'init' action
+	 * Runs upon the WordPress 'init' action.
 	 */
-	public function init() {
+	final public function init_parent() {
 		if ((!is_admin() || (defined('DOING_AJAX') && DOING_AJAX)) && is_user_logged_in() && file_exists($this->includes_dir().'/tfa_frontend.php')) {
 			$this->load_frontend();
 		} else {
@@ -887,7 +890,7 @@ class Simba_Two_Factor_Authentication_1 {
 	/**
 	 * "Shared" - i.e. could be called from either front-end or back-end
 	 */
-	public function shared_ajax() {
+	final public function shared_ajax() {
 
 		if (empty($_POST['subaction']) || empty($_POST['nonce']) || !is_user_logged_in() || !wp_verify_nonce($_POST['nonce'], 'tfa_shared_nonce')) die('Security check (3).');
 
@@ -1121,7 +1124,7 @@ class Simba_Two_Factor_Authentication_1 {
 	/**
 	 * Remove old incorrect TFA code attempts
 	 *
-	 * @param Array $user_info    - user invalid attempts
+	 * @param Array $user_info - user invalid attempts
 	 *
 	 * @return Array
 	 */
@@ -1133,7 +1136,9 @@ class Simba_Two_Factor_Authentication_1 {
 				$splice_recs++;
 			}
 		}
-		if ($splice_recs > 0) array_splice($user_info['attempts'], 0, $splice_recs); // remove all older attempts.
+		if ($splice_recs > 0) {
+			array_splice($user_info['attempts'], 0, $splice_recs); // remove all older attempts.
+		}
 		return $user_info;
 	}
 	
@@ -1152,7 +1157,11 @@ class Simba_Two_Factor_Authentication_1 {
 		if (count($tfa_incorrect_code_attempts) > 0) {
 			foreach ($tfa_incorrect_code_attempts as $i => $user_info) {
 				$user_info = $this->remove_incorrect_tfa_code_old_attempts($user_info); // remove old (before 30 mins) incorrect tfa code attempts by users
-				if ($user_info['username'] == $user->user_login) {
+				if (empty($user_info['attempts'])) {
+					unset($tfa_incorrect_code_attempts[$i]);
+					continue;
+				}
+				if ($user_info['user_id'] == $user->ID) {
 					$userinfo_added = true;
 					if (count($user_info['attempts']) >= TFA_INCORRECT_MAX_ATTEMPTS_ALLOWED_LIMIT && empty($user_info['mailsent'])) {
 						$this->notify_incorrect_tfa_code_attempts($user_info, $user->user_email); // if incorrect tfa attempts are more than max allowed notify user by email that some one else has your password.
@@ -1190,7 +1199,7 @@ class Simba_Two_Factor_Authentication_1 {
 	 * @return Array
 	 */
 	private function get_incorrect_tfa_user_info($user) {
-		return array('username' => $user->user_login, 'attempts' => array($this->get_incorrect_tfa_attempt_info()));
+		return array('user_id' => $user->ID, 'attempts' => array($this->get_incorrect_tfa_attempt_info()));
 	}
 	
 	/**
