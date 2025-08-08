@@ -1,8 +1,8 @@
 === Two Factor Authentication ===
 Tags: two factor, 2fa, tfa, two factor auth, google authenticator
 Requires at least: 3.4
-Tested up to: 6.7
-Stable tag: 1.14.27
+Tested up to: 6.8
+Stable tag: 1.15.5
 Requires PHP: 5.6
 Author: DavidAnderson
 Contributors: DavidAnderson, DNutbourne
@@ -35,7 +35,9 @@ Features (please see the "Screenshots" for more information):
 * Includes support for Ultimate Member login forms (Premium version)
 * Includes support for Elementor Pro login forms (Premium version)
 * Includes support for bbPress login forms (Premium version)
+* Includes support for RegistrationMagic login forms (Premium version)
 * Includes support for login forms from the Gravity Forms User Registration add-on (Premium version)
+* Includes support for login forms (shortcode forms only) from Paid Memberships Pro (Premium version)
 * Includes support for any and every third-party login form (Premium version) without any further coding needed via appending your TFA code to the end of your password
 * Does not mention or request second factor until the user has been identified as one with TFA enabled (i.e. nothing is shown to users who do not have it enabled)
 * WP Multisite compatible (plugin should be network activated)
@@ -70,7 +72,7 @@ This plugin requires PHP version 5.3 or higher and support for either php-openss
 3. Activate the plugin through the 'Plugins' menu in WordPress
 4. Find site-wide settings in Settings -> Two Factor Authentication ; find your own user settings in the top-level menu entry "Two Factor Auth".
 
-If you want to add a section to the front-end of your site where users can configure their two-factor authentication settings, use this shortcode: [twofactor_user_settings]
+If you want to add a section to the front-end of your site where users can configure their two-factor authentication settings, use this shortcode: [twofactor_user_settings] . (If you set the attribute show_algorithm_selector to "yes" then it will include an 'advanced' settings section allowing the HOTP algorithm to be chosen and not only the default TOTP algorithm, but few people will want this).
 
 == Frequently Asked Questions ==
 
@@ -161,6 +163,25 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 13. Allowing users to have trusted devices (Premium version)
 
 == Changelog ==
+
+= 1.15.5 - 28/Jun/2025 =
+
+* FIX: Function WP_Block_Type_Registry::register was called incorrectly
+* FIX: Fix regression in 1.15.1 which could result in displaying settings incorrectly, with checkboxes hidden
+* FEATURE: Add support for RegistrationMagic login forms
+
+= 1.15.2 - 25/Apr/2025 =
+
+* TWEAK: Fix regression in 1.15.1 in parsing of multisite capabilities
+
+= 1.15.1 - 12/Apr/2025 =
+
+* TWEAK: Replace use of maybe_unserialize()
+* TWEAK: Add support for shortcode-based login forms from Paid Memberships Pro (Premium version)
+
+= 1.15.0 - 13/Dec/2024 =
+
+* TWEAK: The 'twofactor_user_settings' shortcode will now not include the "advanced" settings section (with a selector for the TOTP or HOTP algorithm) in the settings output. You can revert to the previous behaviour by adding the attribute show_algorithm_selector="yes" to the shortcode (e.g. [twofactor_user_settings show_algorithm_selector="yes"] ).
 
 = 1.14.27 - 25/Nov/2024 =
 
@@ -888,4 +909,4 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 * User interface simplified/de-cluttered
 
 == Upgrade Notice ==
-* 1.14.27 : Fix a regression in 1.14.26, and manage a database option more efficiently. A recommended update for all.
+* 1.15.5 : Support RegistrationMagic. Fix regression in 1.15.1 in display of options. A recommended update for all.

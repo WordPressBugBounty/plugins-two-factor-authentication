@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) die('No direct access.');
 if (!$is_activated_for_user) {
 	
 	global $current_user;
-	echo empty($current_user->ID) ? '('.__('Not logged in.', 'two-factor-authentication').')' : __('Two factor authentication is not available for your user.', 'two-factor-authentication');
+	echo empty($current_user->ID) ? '(' . esc_html__('Not logged in.', 'two-factor-authentication').')' : esc_html__('Two factor authentication is not available for your user.', 'two-factor-authentication');
 
 } else {
 	
@@ -19,7 +19,7 @@ if (!$is_activated_for_user) {
 		
 		<?php $simba_tfa->get_controller('totp')->current_codes_box(); ?>
 		
-		<?php $simba_tfa->get_controller('totp')->advanced_settings_box(array($tfa_frontend, 'save_settings_button')); ?>
+		<?php if (!empty($show_algorithm_selector)) $simba_tfa->get_controller('totp')->advanced_settings_box(array($tfa_frontend, 'save_settings_button')); ?>
 	
 	</div>
 	

@@ -5,7 +5,7 @@ Plugin URI: https://www.simbahosting.co.uk/s3/product/two-factor-authentication/
 Description: Secure your WordPress login forms with two factor authentication - including WooCommerce login forms
 Author: David Anderson, original plugin by Oskar Hane and enhanced by Dee Nutbourne
 Author URI: https://www.simbahosting.co.uk
-Version: 1.14.27
+Version: 1.15.5
 Text Domain: two-factor-authentication
 Domain Path: /languages
 License: GPLv2 or later
@@ -32,9 +32,9 @@ if (!function_exists('simba_two_factor_authentication_activation')) {
 			// We should not prevent activation if either the AIOS plugin is active.
 			if ($is_2fa_plugin_active) {
 				if (file_exists(__DIR__.'/simba-tfa/premium/loader.php')) {
-					wp_die(__('To activate Two Factor Authentication Premium, first de-activate the free version (only one can be active at once).', 'two-factor-authentication'));
+					wp_die(esc_html__('To activate Two Factor Authentication Premium, first de-activate the free version (only one can be active at once).', 'two-factor-authentication'));
 				} else { // If the 2FA Premium plugin is active and tries to activate the 2FA Free Plugin, it throws a fatal error and stops activating the free version.
-					wp_die(__("You can't activate Two Factor Authentication (Free) because Two Factor Authentication Premium is active (only one can be active at once).", 'two-factor-authentication'));
+					wp_die(esc_html__("You can't activate Two Factor Authentication (Free) because Two Factor Authentication Premium is active (only one can be active at once).", 'two-factor-authentication'));
 				}
 			}
 		}
@@ -52,7 +52,7 @@ if (!class_exists('Simba_Two_Factor_Authentication_Plugin')):
  */
 class Simba_Two_Factor_Authentication_Plugin extends Simba_Two_Factor_Authentication_1 {
 	
-	public $version = '1.14.27';
+	public $version = '1.15.5';
 	
 	const PHP_REQUIRED = '5.6';
 	
@@ -234,7 +234,8 @@ class Simba_Two_Factor_Authentication_Plugin extends Simba_Two_Factor_Authentica
 	 * Runs conditionally on the WP action all_admin_notices
 	 */
 	public function admin_notice_insufficient_php() {
-		$this->show_admin_warning('<strong>'.__('Higher PHP version required', 'two-factor-authentication').'</strong><br> '.sprintf(__('The Two Factor Authentication plugin requires PHP version %s or higher - your current version is only %s.', 'two-factor-authentication'), self::PHP_REQUIRED, PHP_VERSION), 'error');
+		/* translators: 1. PHP required  2. PHP version. */
+		$this->show_admin_warning('<strong>'.__('Higher PHP version required', 'two-factor-authentication').'</strong><br> '.sprintf(__('The Two Factor Authentication plugin requires PHP version %1$s or higher - your current version is only %2$s.', 'two-factor-authentication'), self::PHP_REQUIRED, PHP_VERSION), 'error');
 	}
 	
 	/**
@@ -248,7 +249,7 @@ class Simba_Two_Factor_Authentication_Plugin extends Simba_Two_Factor_Authentica
 	 * Runs conditionally on the WP action all_admin_notices
 	 */
 	public function admin_notice_missing_db_encryption_key() {
-		$this->show_admin_warning('<strong>'.__('Two Factor Authentication encryption key not found', 'two-factor-authentication').'</strong><br> '.htmlspecialchars(__('The "encrypt secrets" feature is currently enabled, but no encryption key has been found (set via the SIMBA_TFA_DB_ENCRYPTION_KEY constant).', SIMBA_TFA_TEXT_DOMAIN).' '.__('This indicates that either setup failed, or your WordPress installation has been corrupted.', SIMBA_TFA_TEXT_DOMAIN)) . ' <a href="' . esc_url($this->get_faq_url()) . '">'. __('Go here for the FAQs, which explain how a website owner can de-activate the plugin without needing to login.', SIMBA_TFA_TEXT_DOMAIN) .'</a>', 'error');
+		$this->show_admin_warning('<strong>'.__('Two Factor Authentication encryption key not found', 'two-factor-authentication').'</strong><br> '.htmlspecialchars(__('The "encrypt secrets" feature is currently enabled, but no encryption key has been found (set via the SIMBA_TFA_DB_ENCRYPTION_KEY constant).', 'two-factor-authentication').' '.__('This indicates that either setup failed, or your WordPress installation has been corrupted.', 'two-factor-authentication')) . ' <a href="' . esc_url($this->get_faq_url()) . '">'. __('Go here for the FAQs, which explain how a website owner can de-activate the plugin without needing to login.', 'two-factor-authentication') .'</a>', 'error');
 	}
 
 	/**
@@ -266,6 +267,7 @@ class Simba_Two_Factor_Authentication_Plugin extends Simba_Two_Factor_Authentica
 	 * Run upon the WP init action. This method is called even if main loading aborts - so don't put anything else in it (use a separate method).
 	 */
 	public function init_child() {
+		/* translators: %s: plugin version. */
 		$this->set_settings_page_heading(sprintf(__('Two Factor Authentication (Version: %s) - Admin Settings', 'two-factor-authentication'), $this->version));
 	}
 }
@@ -283,6 +285,7 @@ if (file_exists(__DIR__.'/simba-tfa/premium/loader.php') && empty($GLOBALS['simb
 	try {
 		new Updraft_Manager_Updater_1_9('https://www.simbahosting.co.uk/s3', 1, 'two-factor-authentication-premium/two-factor-login.php', array('require_login' => false));
 	} catch (Exception $e) {
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Required for error handling.
 		error_log($e->getMessage());
 	}
 }

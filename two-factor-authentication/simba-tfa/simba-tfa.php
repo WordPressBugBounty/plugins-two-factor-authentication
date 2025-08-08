@@ -608,7 +608,7 @@ class Simba_Two_Factor_Authentication_1 {
 			if (is_array($roles_db)) {
 				foreach ($roles_db as $role_info) {
 					if (empty($role_info->meta_key) || !preg_match('/^'.$table_prefix.'\d+_capabilities$/', $role_info->meta_key) || empty($role_info->meta_value) || !preg_match('/^a:/', $role_info->meta_value)) continue;
-					$site_roles = unserialize($role_info->meta_value);
+					$site_roles = $this->unserialize($role_info->meta_value);
 					if (!is_array($site_roles)) continue;
 					foreach ($site_roles as $role => $active) {
 						if ($active && !in_array($role, $roles)) $roles[] = $role;
@@ -1399,7 +1399,7 @@ class Simba_Two_Factor_Authentication_1 {
 			$setting = $this->get_option('tfa_'.$prefix.$id);
 			$setting = ($setting === false) ? $default : ($setting ? 1 : 0);
 
-			echo '<input type="checkbox" id="tfa_'.$prefix.$id.'" name="tfa_'.$prefix.$id.'" class="tfa_'.$prefix.'user_roles" value="1" '.($setting ? 'checked="checked"' :'').'> <label for="tfa_'.$prefix.$id.'">'.htmlspecialchars($name)."</label><br>\n";
+			echo '<input type="checkbox" id="tfa_'.esc_attr($prefix.$id).'" name="tfa_'.esc_attr($prefix.$id).'" class="tfa_'.esc_attr($prefix).'user_roles" value="1" '.($setting ? 'checked="checked"' :'').'> <label for="tfa_'.esc_attr($prefix.$id).'">'.htmlspecialchars($name)."</label><br>\n";
 		}
 
 		global $wp_roles;
@@ -1409,7 +1409,7 @@ class Simba_Two_Factor_Authentication_1 {
 			$setting = $this->get_option('tfa_'.$prefix.$id);
 			$setting = ($setting === false) ? $default : ($setting ? 1 : 0);
 
-			echo '<input type="checkbox" id="tfa_'.$prefix.$id.'" name="tfa_'.$prefix.$id.'" class="tfa_'.$prefix.'user_roles" value="1" '.($setting ? 'checked="checked"' :'').'> <label for="tfa_'.$prefix.$id.'">'.htmlspecialchars(translate_user_role($name))."</label><br>\n";
+			echo '<input type="checkbox" id="tfa_'.esc_attr($prefix.$id).'" name="tfa_'.esc_attr($prefix.$id).'" class="tfa_'.esc_attr($prefix).'user_roles" value="1" '.($setting ? 'checked="checked"' :'').'> <label for="tfa_'.esc_attr($prefix.$id).'">'.htmlspecialchars(translate_user_role($name))."</label><br>\n";
 		}
 
 	}
@@ -1701,5 +1701,22 @@ class Simba_Two_Factor_Authentication_1 {
 	public function set_authentication_slug($authentication_slug) {
 		$this->authentication_slug = $authentication_slug;
 	}
-	
+
+	/**
+	 * Unserialize data while maintaining compatibility across PHP versions due to different number of arguments required by PHP's "unserialize" function
+	 *
+	 * @param string        $serialized_data Data to be unserialized, should be one that is already serialized
+	 * @param boolean|array $allowed_classes Either an array of class names which should be accepted, false to accept no classes, or true to accept all classes
+	 * @param integer       $max_depth       The maximum depth of structures permitted during unserialization, and is intended to prevent stack overflows
+	 *
+	 * @return mixed Unserialized data can be any of types (integer, float, boolean, string, array or object)
+	 */
+	private static function unserialize($serialized_data, $allowed_classes = false, $max_depth = 0) {
+		if (version_compare(PHP_VERSION, '7.0', '<')) {
+			$result = unserialize($serialized_data);
+		} else {
+			$result = unserialize($serialized_data, array('allowed_classes' => $allowed_classes, 'max_depth' => $max_depth)); // phpcs:ignore PHPCompatibility.FunctionUse.NewFunctionParameters.unserialize_optionsFound -- This is the method used to unserialize data instead of the default unserialize method 
+		}
+		return $result;
+	}
 }
