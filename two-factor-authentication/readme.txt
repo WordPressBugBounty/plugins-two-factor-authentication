@@ -1,8 +1,8 @@
 === Two Factor Authentication ===
 Tags: two factor, 2fa, tfa, two factor auth, google authenticator
 Requires at least: 3.4
-Tested up to: 6.8
-Stable tag: 1.15.5
+Tested up to: 6.9
+Stable tag: 1.16.0
 Requires PHP: 5.6
 Author: DavidAnderson
 Contributors: DavidAnderson, DNutbourne
@@ -35,6 +35,7 @@ Features (please see the "Screenshots" for more information):
 * Includes support for Ultimate Member login forms (Premium version)
 * Includes support for Elementor Pro login forms (Premium version)
 * Includes support for bbPress login forms (Premium version)
+* Includes support for Easy Digital Downloads login forms (Premium version)
 * Includes support for RegistrationMagic login forms (Premium version)
 * Includes support for login forms from the Gravity Forms User Registration add-on (Premium version)
 * Includes support for login forms (shortcode forms only) from Paid Memberships Pro (Premium version)
@@ -163,6 +164,11 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 13. Allowing users to have trusted devices (Premium version)
 
 == Changelog ==
+
+= 1.16.0 - 09/Dec/2025 =
+
+* FEATURE: Add support for Easy Digital Downloads(EDD) login form
+* TWEAK: Resolve a typo in the emergency code usage email notification text
 
 = 1.15.5 - 28/Jun/2025 =
 
@@ -909,4 +915,4 @@ Note that the two factor authentication plugin has no mechanism to compare or ap
 * User interface simplified/de-cluttered
 
 == Upgrade Notice ==
-* 1.15.5 : Support RegistrationMagic. Fix regression in 1.15.1 in display of options. A recommended update for all.
+* 1.16.0 : Support Easy Digital Downloads. Also fixes a typo. A recommended update for all.
